@@ -203,36 +203,33 @@ function setupMenu() {
 function setupActiveNav() {
   const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
   const sections = navLinks
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
+    .map((link) => ({
+      link,
+      section: document.querySelector(link.getAttribute("href")),
+    }))
+    .filter((item) => item.section);
 
-  if (sections.length === 0 || !("IntersectionObserver" in window)) {
+  if (sections.length === 0) {
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visibleEntry = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  function updateActiveLink() {
+    const threshold = window.scrollY + (header?.offsetHeight || 0) + window.innerHeight * 0.24;
+    const activeItem =
+      [...sections].reverse().find(({ section }) => section.offsetTop <= threshold) || sections[0];
 
-      if (!visibleEntry) {
-        return;
+    navLinks.forEach((link) => {
+      if (link === activeItem.link) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
       }
+    });
+  }
 
-      const activeId = `#${visibleEntry.target.id}`;
-      navLinks.forEach((link) => {
-        if (link.getAttribute("href") === activeId) {
-          link.setAttribute("aria-current", "true");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-    },
-    { rootMargin: "-34% 0px -52% 0px", threshold: [0.12, 0.3, 0.58] },
-  );
-
-  sections.forEach((section) => observer.observe(section));
+  updateActiveLink();
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
+  window.addEventListener("resize", updateActiveLink);
 }
 
 function setupMobileStickyCta() {
