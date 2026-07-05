@@ -110,14 +110,18 @@ button {
 .brand-symbol {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 38px;
-  color: var(--white);
-  background: var(--ink);
+  width: 58px;
+  height: 42px;
+  background: var(--white);
   border-bottom: 3px solid var(--red);
-  font-size: 0.9rem;
-  font-weight: 900;
-  letter-spacing: 0;
+  overflow: hidden;
+}
+
+.brand-symbol img {
+  display: block;
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
 }
 
 .brand-name {
@@ -365,8 +369,7 @@ h3 {
   place-items: center;
   width: clamp(118px, 14vw, 178px);
   aspect-ratio: 1;
-  color: var(--white);
-  background: var(--red);
+  background: var(--white);
   border: 9px solid var(--paper-soft);
   border-radius: 50%;
   box-shadow: var(--shadow), inset 0 -18px 30px rgba(0, 0, 0, 0.16);
@@ -376,10 +379,11 @@ h3 {
     rotateY(calc((var(--scroll-ratio) - 0.35) * -12deg));
 }
 
-.scene-core span {
-  font-size: clamp(1.45rem, 3vw, 2.65rem);
-  font-weight: 950;
-  letter-spacing: 0;
+.scene-core img {
+  display: block;
+  width: 74%;
+  height: 74%;
+  object-fit: contain;
 }
 
 .scene-axis {
@@ -1208,7 +1212,7 @@ h3 {
   }
 
   .brand-symbol {
-    width: 48px;
+    width: 52px;
   }
 
   h1 {
