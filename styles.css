@@ -402,7 +402,7 @@ h3 {
 .scene-caption {
   position: absolute;
   right: 2%;
-  bottom: 13%;
+  top: 14%;
   z-index: 4;
   display: grid;
   gap: 4px;
@@ -413,6 +413,45 @@ h3 {
   background: rgba(251, 251, 247, 0.76);
   backdrop-filter: blur(14px);
   box-shadow: 0 12px 32px rgba(17, 17, 17, 0.08);
+}
+
+.signal-board {
+  position: absolute;
+  left: 0;
+  bottom: 6%;
+  z-index: 4;
+  width: min(270px, 50%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(251, 251, 247, 0.78);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 42px rgba(17, 17, 17, 0.1);
+  overflow: hidden;
+}
+
+.signal-board div {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.signal-board div:last-child {
+  border-bottom: 0;
+}
+
+.signal-board span {
+  color: var(--red);
+  font-size: 0.72rem;
+  font-weight: 860;
+  text-transform: uppercase;
+}
+
+.signal-board strong {
+  font-size: 0.92rem;
+  line-height: 1.1;
 }
 
 .scene-caption span {
@@ -565,6 +604,79 @@ h3 {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.48;
+}
+
+.acquisition-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+  gap: clamp(30px, 7vw, 88px);
+  align-items: start;
+  padding-top: clamp(40px, 8vw, 96px);
+}
+
+.acquisition-copy {
+  position: sticky;
+  top: 112px;
+}
+
+.acquisition-copy p:last-child {
+  max-width: 42ch;
+  margin-top: 24px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: clamp(1.04rem, 1.55vw, 1.2rem);
+  line-height: 1.5;
+}
+
+.acquisition-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.acquisition-item {
+  position: relative;
+  min-height: 190px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(251, 251, 247, 0.68);
+  overflow: hidden;
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.acquisition-item::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--red);
+  transform: translateX(-76%);
+  transition: transform 260ms ease;
+}
+
+.acquisition-item:hover {
+  background: var(--paper-soft);
+  border-color: rgba(215, 25, 32, 0.42);
+  transform: translateX(6px);
+}
+
+.acquisition-item:hover::after {
+  transform: translateX(0);
+}
+
+.acquisition-item span {
+  display: inline-flex;
+  margin-bottom: 28px;
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.acquisition-item p {
+  max-width: 44ch;
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .history-section {
@@ -1015,6 +1127,7 @@ h3 {
   }
 
   .section-kicker,
+  .acquisition-section,
   .history-copy,
   .audience-section,
   .testimonial-empty,
@@ -1066,6 +1179,11 @@ h3 {
     top: auto;
   }
 
+  .acquisition-copy {
+    position: relative;
+    top: auto;
+  }
+
   .final-cta .btn,
   .final-cta p:not(.eyebrow) {
     grid-column: auto;
@@ -1094,8 +1212,8 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(2.55rem, 12.6vw, 3.25rem);
-    line-height: 0.96;
+    font-size: clamp(2.25rem, 10.8vw, 2.85rem);
+    line-height: 0.98;
   }
 
   h2 {
@@ -1108,13 +1226,23 @@ h3 {
   }
 
   .hero-visual {
-    min-height: 410px;
+    min-height: 285px;
   }
 
   .scene-caption {
+    top: auto;
     right: 0;
-    bottom: 4%;
+    bottom: 1%;
     max-width: 180px;
+  }
+
+  .scene-core {
+    width: clamp(104px, 28vw, 126px);
+    border-width: 7px;
+  }
+
+  .signal-board {
+    display: none;
   }
 
   .hero-actions .btn {

@@ -2,36 +2,36 @@ const CONTACT_URL = "#contato";
 
 const services = [
   {
-    title: "Estratégia & Posicionamento",
-    text: "Clareza de oferta, narrativa de marca, organização da presença e direção criativa.",
+    title: "Estratégia de Publicidade",
+    text: "Oferta, público, promessa, canais e ângulos para campanhas com direção clara.",
   },
   {
-    title: "Identidade & Design",
-    text: "Visual, linguagem, peças, criativos e sistemas gráficos com consistência.",
+    title: "Tráfego Pago",
+    text: "Google Ads, Meta Ads, segmentação, verba, criativos e otimização de campanhas.",
   },
   {
-    title: "Conteúdo & Social",
-    text: "Planejamento, formatos, calendário, presença e comunicação para marcas e projetos.",
+    title: "SEO & Conteúdo de Busca",
+    text: "Páginas, palavras-chave, arquitetura, conteúdo e presença local para aparecer melhor.",
   },
   {
-    title: "Sites & Landing Pages",
-    text: "Páginas pensadas para apresentar, vender, captar e organizar a percepção da marca.",
+    title: "Landing Pages de Conversão",
+    text: "Páginas pensadas para anúncio, busca, captação, venda e clareza de oferta.",
   },
   {
-    title: "Campanhas & Tráfego",
-    text: "Criativos, funis, anúncios e estrutura de captação para campanhas mais sérias.",
+    title: "Criativos & Social Ads",
+    text: "Peças, copies, variações e narrativas visuais para campanhas que precisam performar.",
   },
   {
-    title: "Lançamentos & Produtos Digitais",
-    text: "Estruturação de ideias, ofertas, páginas, narrativa e execução de lançamento.",
+    title: "Funis & Mensuração",
+    text: "Eventos, pixels, UTMs, leitura de sinais e organização para decidir com mais precisão.",
   },
   {
-    title: "Audiovisual & Presença",
-    text: "Conteúdo visual, vídeo, direção estética e materiais de apresentação.",
+    title: "Branding para Campanhas",
+    text: "Identidade, linguagem e consistência para a marca sustentar a mídia sem parecer improvisada.",
   },
   {
-    title: "Automação & Operação",
-    text: "Sistemas simples, fluxos, organização e inteligência operacional para empresas.",
+    title: "Automação Comercial",
+    text: "Fluxos, formulários, organização de leads e integrações simples para não perder demanda.",
   },
 ];
 
@@ -63,36 +63,36 @@ const testimonialHighlights = [
 const processSteps = [
   {
     title: "Diagnóstico",
-    text: "Entendemos marca, oferta, cenário e estrutura atual.",
+    text: "Lemos oferta, público, busca, concorrência, canais e estrutura atual de conversão.",
   },
   {
     title: "Direção",
-    text: "Definimos narrativa, prioridades e caminho visual/comercial.",
+    text: "Definimos promessa, palavras-chave, ângulos criativos e prioridade de mídia.",
   },
   {
     title: "Construção",
-    text: "Criamos identidade, páginas, criativos, conteúdo e materiais.",
+    text: "Criamos landing pages, copies, criativos, conteúdo SEO e estrutura de mensuração.",
   },
   {
-    title: "Campanha",
-    text: "Organizamos presença, anúncio, lançamento ou estratégia de exposição.",
+    title: "Ativação",
+    text: "Colocamos campanhas, páginas e conteúdos no ar com leitura de tráfego e busca.",
   },
   {
-    title: "Evolução",
-    text: "Ajustamos, refinamos e transformamos execução em sistema.",
+    title: "Otimização",
+    text: "Refinamos verba, palavra-chave, anúncio, página e oferta conforme os sinais aparecem.",
   },
 ];
 
 const audiences = [
-  "Empresas em estruturação",
-  "Negócios locais e digitais",
-  "Artistas e projetos culturais",
-  "Marcas em lançamento",
-  "Produtos digitais",
-  "Operações que precisam organizar presença, comunicação e venda",
+  "Empresas que precisam gerar demanda qualificada",
+  "Negócios locais que querem aparecer melhor no Google",
+  "Marcas com mídia paga sem página ou oferta clara",
+  "Produtos e serviços que dependem de landing pages",
+  "Artistas, eventos e projetos culturais em campanha",
+  "Operações com tráfego, SEO e comercial desconectados",
 ];
 
-const orbitLabels = ["marca", "campanha", "conteúdo", "site", "lançamento", "tráfego", "operação"];
+const orbitLabels = ["SEO", "Google Ads", "Meta Ads", "criativos", "landing", "conteúdo", "analytics"];
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const root = document.documentElement;
@@ -140,7 +140,7 @@ function renderContent() {
           <p>
             O destaque do Instagram foi previsto como fonte complementar, mas não será preenchido
             com frases não verificadas. Quando os textos reais forem inseridos em
-            <strong>testimonialHighlights</strong>, esta seção vira uma grade de depoimentos automaticamente.
+            <strong>testimonialHighlights</strong>, esta seção vira uma grade de prova social automaticamente.
           </p>
         </div>
         <div class="editable-note">
@@ -346,7 +346,7 @@ function setupOrbitScene() {
       .sort((a, b) => a.z - b.z);
 
     projected.forEach((node) => {
-      const isRed = node.label === "campanha" || node.label === "lançamento" || node.label === "tráfego";
+      const isRed = node.label === "Google Ads" || node.label === "Meta Ads" || node.label === "SEO";
       const radius = 6.5 * node.scale;
       const showLabels = width > 520;
       ctx.beginPath();

@@ -2,6 +2,8 @@
 
 Landing page oficial da agência PUB, construída como site estático pronto para publicação.
 
+Direção atual: agência de publicidade, tráfego pago, SEO, conteúdo de busca e landing pages.
+
 ## Estrutura
 
 - `index.html`: marcação da landing page
