@@ -95,6 +95,7 @@ const audiences = [
 const orbitLabels = ["SEO", "Google Ads", "Meta Ads", "criativos", "landing", "conteúdo", "analytics"];
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const compactScene = window.matchMedia("(max-width: 640px)");
 const root = document.documentElement;
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector(".menu-toggle");
@@ -132,23 +133,16 @@ function renderContent() {
     .join("");
 
   const testimonialsArea = document.querySelector("#testimonialsArea");
+  const testimonialsSection = document.querySelector("#depoimentos");
   if (testimonialHighlights.length === 0) {
-    testimonialsArea.innerHTML = `
-      <div class="testimonial-empty" data-reveal>
-        <div>
-          <h3>Depoimentos em atualização.</h3>
-          <p>
-            O destaque do Instagram foi previsto como fonte complementar, mas não será preenchido
-            com frases não verificadas. Quando os textos reais forem inseridos em
-            <strong>testimonialHighlights</strong>, esta seção vira uma grade de prova social automaticamente.
-          </p>
-        </div>
-        <div class="editable-note">
-          Campos preparados: nome, empresa/projeto, texto, imagem opcional e fonte.
-        </div>
-      </div>
-    `;
+    if (testimonialsSection) {
+      testimonialsSection.hidden = true;
+    }
+    testimonialsArea.innerHTML = "";
   } else {
+    if (testimonialsSection) {
+      testimonialsSection.hidden = false;
+    }
     testimonialsArea.innerHTML = `
       <div class="testimonial-grid">
         ${testimonialHighlights
@@ -204,6 +198,59 @@ function setupMenu() {
       menuToggle.setAttribute("aria-expanded", "false");
     }
   });
+}
+
+function setupActiveNav() {
+  const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (sections.length === 0 || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visibleEntry) {
+        return;
+      }
+
+      const activeId = `#${visibleEntry.target.id}`;
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href") === activeId) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    },
+    { rootMargin: "-34% 0px -52% 0px", threshold: [0.12, 0.3, 0.58] },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function setupMobileStickyCta() {
+  const stickyCta = document.querySelector(".mobile-sticky-cta");
+  const heroActions = document.querySelector(".hero-actions");
+
+  if (!stickyCta || !heroActions || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      stickyCta.classList.toggle("is-visible", !entry.isIntersecting);
+    },
+    { threshold: 0.05 },
+  );
+
+  observer.observe(heroActions);
 }
 
 function setupReveal() {
@@ -281,6 +328,7 @@ function setupOrbitScene() {
   let width = 0;
   let height = 0;
   let rafId = 0;
+  const shouldLoop = !reducedMotion && !compactScene.matches;
 
   const nodes = orbitLabels.map((label, index) => ({
     label,
@@ -372,7 +420,7 @@ function setupOrbitScene() {
     ctx.fillStyle = "rgba(215,25,32,0.18)";
     ctx.fill();
 
-    if (!reducedMotion) {
+    if (shouldLoop && document.visibilityState === "visible") {
       rafId = window.requestAnimationFrame(draw);
     }
   }
@@ -392,8 +440,21 @@ function setupOrbitScene() {
   draw();
   window.addEventListener("resize", () => {
     resize();
-    if (reducedMotion) {
+    if (reducedMotion || !shouldLoop) {
       draw();
+    }
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden" && rafId) {
+      window.cancelAnimationFrame(rafId);
+      rafId = 0;
+      return;
+    }
+
+    if (document.visibilityState === "visible" && shouldLoop && !rafId) {
+      resize();
+      rafId = window.requestAnimationFrame(draw);
     }
   });
 
@@ -402,6 +463,8 @@ function setupOrbitScene() {
 
 renderContent();
 setupMenu();
+setupActiveNav();
+setupMobileStickyCta();
 setupReveal();
 setupScrollEffects();
 setupOrbitScene();
