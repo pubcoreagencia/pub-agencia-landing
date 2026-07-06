@@ -119,14 +119,12 @@ button {
 .brand-symbol {
   display: grid;
   place-items: center;
-  width: 86px;
-  height: 52px;
-  padding: 7px 8px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(17, 17, 17, 0.1);
-  border-radius: 6px;
-  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.08);
-  overflow: hidden;
+  width: 96px;
+  aspect-ratio: 2200 / 1436;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .brand-symbol img {
@@ -371,14 +369,12 @@ h3 {
   z-index: 3;
   display: grid;
   place-items: center;
-  width: clamp(136px, 15vw, 198px);
-  aspect-ratio: 1.45 / 1;
-  background: var(--white);
-  border: 9px solid var(--paper-soft);
-  border-radius: 22px;
-  box-shadow:
-    var(--shadow),
-    inset 0 0 0 1px rgba(17, 17, 17, 0.05);
+  width: clamp(178px, 20vw, 250px);
+  aspect-ratio: 2200 / 1436;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   transform:
     translate3d(-50%, -50%, 78px)
     rotateX(calc((var(--scroll-ratio) - 0.2) * 9deg))
@@ -387,11 +383,12 @@ h3 {
 
 .scene-core img {
   display: block;
-  width: 86%;
-  height: auto;
-  max-height: 72%;
+  width: 100%;
+  height: 100%;
+  max-height: none;
   object-fit: contain;
   transform: translateY(0);
+  filter: drop-shadow(0 16px 28px rgba(17, 17, 17, 0.16));
 }
 
 .scene-axis {
@@ -1414,9 +1411,7 @@ h3 {
   }
 
   .brand-symbol {
-    width: 74px;
-    height: 48px;
-    padding: 7px;
+    width: 82px;
   }
 
   h1 {
@@ -1445,9 +1440,7 @@ h3 {
   }
 
   .scene-core {
-    width: clamp(118px, 32vw, 142px);
-    border-width: 7px;
-    border-radius: 18px;
+    width: clamp(142px, 40vw, 166px);
   }
 
   .signal-board {
