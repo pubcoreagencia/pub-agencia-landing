@@ -63,31 +63,23 @@ const testimonialHighlights = [
 const videoTestimonials = [
   {
     title: "Domingo Stark",
-    source: "Instagram @agenciapubrj",
     video: "./assets/testimonials/domingo-stark.mp4",
     poster: "./assets/testimonials/domingo-stark.jpg",
-    note: "Depoimento completo.",
   },
   {
     title: "Cego Jeffinho",
-    source: "Instagram @agenciapubrj",
     video: "./assets/testimonials/cego-jeffinho.mp4",
     poster: "./assets/testimonials/cego-jeffinho.jpg",
-    note: "Depoimento completo.",
   },
   {
     title: "Paulinho Serra",
-    source: "Instagram @agenciapubrj",
     video: "./assets/testimonials/paulinho-serra.mp4",
     poster: "./assets/testimonials/paulinho-serra.jpg",
-    note: "Depoimento completo.",
   },
   {
     title: "Vamos Dubai",
-    source: "Instagram @agenciapubrj",
     video: "./assets/testimonials/vamos-dubai.mp4",
     poster: "./assets/testimonials/vamos-dubai.jpg",
-    note: "Vídeo completo.",
   },
 ];
 
@@ -183,15 +175,16 @@ function renderContent() {
                 .map(
                   (item) => `
                     <article class="video-testimonial-card" data-reveal>
-                      <div class="video-frame">
-                        <video controls playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
+                      <div class="video-frame" data-testimonial-title="${item.title}">
+                        <video controls playsinline webkit-playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
                           <source src="${item.video}" type="video/mp4" />
                         </video>
+                        <button class="video-play-button" type="button" aria-label="Reproduzir depoimento de ${item.title}">
+                          <span aria-hidden="true"></span>
+                        </button>
                       </div>
                       <div class="video-testimonial-meta">
                         <strong>${item.title}</strong>
-                        <span>${item.source}</span>
-                        <em>${item.note}</em>
                       </div>
                     </article>
                   `,
@@ -340,6 +333,71 @@ function setupMobileStickyCta() {
 
     coverSensitiveSections.forEach((section) => sectionObserver.observe(section));
   }
+}
+
+function setupVideoPlayers() {
+  const players = [...document.querySelectorAll(".video-frame")];
+
+  function pauseOtherVideos(activeVideo) {
+    players.forEach((otherFrame) => {
+      const otherVideo = otherFrame.querySelector("video");
+
+      if (otherVideo && otherVideo !== activeVideo && !otherVideo.paused) {
+        otherVideo.pause();
+      }
+    });
+  }
+
+  players.forEach((frame) => {
+    const video = frame.querySelector("video");
+    const playButton = frame.querySelector(".video-play-button");
+    const testimonialTitle = frame.dataset.testimonialTitle || "depoimento";
+
+    if (!video || !playButton) {
+      return;
+    }
+
+    function syncPlayButton() {
+      const isPlaying = !video.paused && !video.ended;
+      frame.classList.toggle("is-playing", isPlaying);
+      playButton.setAttribute(
+        "aria-label",
+        `${isPlaying ? "Pausar" : "Reproduzir"} depoimento de ${testimonialTitle}`,
+      );
+    }
+
+    function playVideo() {
+      pauseOtherVideos(video);
+
+      video.play().catch(() => {
+        syncPlayButton();
+      });
+    }
+
+    playButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (video.paused || video.ended) {
+        playVideo();
+      } else {
+        video.pause();
+      }
+    });
+
+    video.addEventListener("click", () => {
+      if (video.paused || video.ended) {
+        playVideo();
+      }
+    });
+
+    video.addEventListener("play", syncPlayButton);
+    video.addEventListener("pause", syncPlayButton);
+    video.addEventListener("ended", syncPlayButton);
+    video.addEventListener("loadedmetadata", syncPlayButton);
+    video.addEventListener("error", syncPlayButton);
+    syncPlayButton();
+  });
 }
 
 function setupReveal() {
@@ -551,6 +609,7 @@ function setupOrbitScene() {
 }
 
 renderContent();
+setupVideoPlayers();
 setupMenu();
 setupActiveNav();
 setupMobileStickyCta();
