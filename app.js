@@ -60,6 +60,37 @@ const testimonialHighlights = [
   // },
 ];
 
+const videoTestimonials = [
+  {
+    title: "Domingo Stark",
+    source: "Instagram @agenciapubrj",
+    video: "./assets/testimonials/domingo-stark.mp4",
+    poster: "./assets/testimonials/domingo-stark.jpg",
+    note: "Depoimento completo.",
+  },
+  {
+    title: "Cego Jeffinho",
+    source: "Instagram @agenciapubrj",
+    video: "./assets/testimonials/cego-jeffinho.mp4",
+    poster: "./assets/testimonials/cego-jeffinho.jpg",
+    note: "Depoimento completo.",
+  },
+  {
+    title: "Paulinho Serra",
+    source: "Instagram @agenciapubrj",
+    video: "./assets/testimonials/paulinho-serra.mp4",
+    poster: "./assets/testimonials/paulinho-serra.jpg",
+    note: "Depoimento completo.",
+  },
+  {
+    title: "Vamos Dubai",
+    source: "Instagram @agenciapubrj",
+    video: "./assets/testimonials/vamos-dubai.mp4",
+    poster: "./assets/testimonials/vamos-dubai.jpg",
+    note: "Vídeo completo.",
+  },
+];
+
 const processSteps = [
   {
     title: "Diagnóstico",
@@ -134,7 +165,7 @@ function renderContent() {
 
   const testimonialsArea = document.querySelector("#testimonialsArea");
   const testimonialsSection = document.querySelector("#depoimentos");
-  if (testimonialHighlights.length === 0) {
+  if (testimonialHighlights.length === 0 && videoTestimonials.length === 0) {
     if (testimonialsSection) {
       testimonialsSection.hidden = true;
     }
@@ -144,7 +175,36 @@ function renderContent() {
       testimonialsSection.hidden = false;
     }
     testimonialsArea.innerHTML = `
-      <div class="testimonial-grid">
+      ${
+        videoTestimonials.length > 0
+          ? `
+            <div class="video-testimonial-grid">
+              ${videoTestimonials
+                .map(
+                  (item) => `
+                    <article class="video-testimonial-card" data-reveal>
+                      <div class="video-frame">
+                        <video controls playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
+                          <source src="${item.video}" type="video/mp4" />
+                        </video>
+                      </div>
+                      <div class="video-testimonial-meta">
+                        <strong>${item.title}</strong>
+                        <span>${item.source}</span>
+                        <em>${item.note}</em>
+                      </div>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </div>
+          `
+          : ""
+      }
+      ${
+        testimonialHighlights.length > 0
+          ? `
+            <div class="testimonial-grid">
         ${testimonialHighlights
           .map(
             (item) => `
@@ -159,7 +219,10 @@ function renderContent() {
             `,
           )
           .join("")}
-      </div>
+            </div>
+          `
+          : ""
+      }
     `;
   }
 
@@ -235,19 +298,48 @@ function setupActiveNav() {
 function setupMobileStickyCta() {
   const stickyCta = document.querySelector(".mobile-sticky-cta");
   const heroActions = document.querySelector(".hero-actions");
+  const coverSensitiveSections = document.querySelectorAll("#depoimentos, #contato");
 
   if (!stickyCta || !heroActions || !("IntersectionObserver" in window)) {
     return;
   }
 
-  const observer = new IntersectionObserver(
+  let heroActionsVisible = true;
+  let sensitiveSectionVisible = false;
+  const visibleSensitiveSections = new Set();
+
+  function syncStickyCta() {
+    stickyCta.classList.toggle("is-visible", !heroActionsVisible && !sensitiveSectionVisible);
+  }
+
+  const heroObserver = new IntersectionObserver(
     ([entry]) => {
-      stickyCta.classList.toggle("is-visible", !entry.isIntersecting);
+      heroActionsVisible = entry.isIntersecting;
+      syncStickyCta();
     },
     { threshold: 0.05 },
   );
 
-  observer.observe(heroActions);
+  heroObserver.observe(heroActions);
+
+  if (coverSensitiveSections.length > 0) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSensitiveSections.add(entry.target);
+          } else {
+            visibleSensitiveSections.delete(entry.target);
+          }
+        });
+        sensitiveSectionVisible = visibleSensitiveSections.size > 0;
+        syncStickyCta();
+      },
+      { rootMargin: "-12% 0px -18% 0px", threshold: 0 },
+    );
+
+    coverSensitiveSections.forEach((section) => sectionObserver.observe(section));
+  }
 }
 
 function setupReveal() {
