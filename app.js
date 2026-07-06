@@ -1,42 +1,114 @@
 const CONTACT_URL = "#contato";
 
-const services = [
+const heroChips = [
+  "Site profissional",
+  "Landing pages",
+  "WhatsApp organizado",
+  "CRM & Funil",
+  "Automações",
+  "Agentes de IA",
+  "Campanhas",
+  "Conteúdo",
+];
+
+const painPoints = [
+  "O cliente chama, mas ninguém acompanha direito",
+  "O WhatsApp vira bagunça",
+  "A empresa depende só de post",
+  "O site não apresenta bem a oferta",
+  "Os anúncios levam para uma estrutura fraca",
+  "Não existe funil, CRM ou histórico",
+  "A equipe responde no improviso",
+  "Nenhum dado vira decisão",
+];
+
+const structureServices = [
   {
-    title: "Estratégia de Publicidade",
-    text: "Oferta, público, promessa, canais e ângulos para campanhas com direção clara.",
+    title: "Presença digital",
+    text: "Site, domínio, e-mail profissional, landing pages, identidade de apresentação e páginas que explicam melhor o que a empresa vende.",
   },
   {
-    title: "Tráfego Pago",
-    text: "Google Ads, Meta Ads, segmentação, verba, criativos e otimização de campanhas.",
+    title: "Captação",
+    text: "Campanhas, criativos, SEO, conteúdo, páginas de conversão e formulários para transformar atenção em oportunidade real.",
   },
   {
-    title: "SEO & Conteúdo de Busca",
-    text: "Páginas, palavras-chave, arquitetura, conteúdo e presença local para aparecer melhor.",
+    title: "Atendimento",
+    text: "WhatsApp organizado, mensagens, fluxos, respostas, triagem e estrutura para não perder conversas importantes.",
   },
   {
-    title: "Landing Pages de Conversão",
-    text: "Páginas pensadas para anúncio, busca, captação, venda e clareza de oferta.",
+    title: "CRM & Funil",
+    text: "Organização de leads, etapas comerciais, acompanhamento, histórico e clareza sobre onde cada oportunidade está.",
   },
   {
-    title: "Criativos & Social Ads",
-    text: "Peças, copies, variações e narrativas visuais para campanhas que precisam performar.",
+    title: "Automação",
+    text: "Fluxos simples para reduzir tarefas repetitivas, conectar ferramentas e manter o processo funcionando com menos dependência manual.",
   },
   {
-    title: "Funis & Mensuração",
-    text: "Eventos, pixels, UTMs, leitura de sinais e organização para decidir com mais precisão.",
+    title: "Agentes de IA",
+    text: "IA aplicada para atendimento, qualificação, respostas, organização, produção de conteúdo, análise e suporte operacional.",
   },
   {
-    title: "Branding para Campanhas",
-    text: "Identidade, linguagem e consistência para a marca sustentar a mídia sem parecer improvisada.",
+    title: "Conteúdo & Criativos",
+    text: "Comunicação, peças, anúncios, posts, copy e narrativa visual para a marca parecer mais séria e mais clara.",
   },
   {
-    title: "Automação Comercial",
-    text: "Fluxos, formulários, organização de leads e integrações simples para não perder demanda.",
+    title: "Indicadores",
+    text: "Leitura de dados, gargalos, campanhas, conversões e sinais importantes para melhorar a operação com base em evidências.",
   },
 ];
 
-const workedBrands = [
-  "L’Oréal Paris",
+const pubIAModules = [
+  {
+    title: "Atendimento inteligente",
+    text: "Respostas, triagem, direcionamento, qualificação e suporte para reduzir perda de oportunidades.",
+  },
+  {
+    title: "Funis inteligentes",
+    text: "Fluxos de captação e acompanhamento para leads não sumirem depois do primeiro contato.",
+  },
+  {
+    title: "Automação comercial",
+    text: "Conexões entre formulário, WhatsApp, CRM, planilhas, notificações e tarefas.",
+  },
+  {
+    title: "Conteúdo e copy",
+    text: "Apoio para posts, criativos, anúncios, roteiros, páginas e comunicação com mais consistência.",
+  },
+  {
+    title: "Pesquisa e análise",
+    text: "Leitura de mercado, concorrentes, campanhas, mensagens e oportunidades de melhoria.",
+  },
+  {
+    title: "Sistemas simples",
+    text: "Ferramentas internas, painéis, formulários, relatórios e interfaces para organizar a operação.",
+  },
+];
+
+const systemSteps = [
+  {
+    title: "Apresentar",
+    text: "Marca, site, landing page, conteúdo e oferta mais claros.",
+  },
+  {
+    title: "Captar",
+    text: "Campanhas, criativos, SEO, tráfego e formulários gerando oportunidades.",
+  },
+  {
+    title: "Atender",
+    text: "WhatsApp, respostas, triagem e organização do primeiro contato.",
+  },
+  {
+    title: "Acompanhar",
+    text: "CRM, funil, histórico, lembretes e automações para não perder leads.",
+  },
+  {
+    title: "Melhorar",
+    text: "Indicadores, análise, ajustes e IA aplicada para evoluir o sistema.",
+  },
+];
+
+const workedNames = [
+  "L'Oréal Paris",
   "Gabriela Rocha",
   "Gabriel O Pensador",
   "Paralamas do Sucesso",
@@ -83,39 +155,68 @@ const videoTestimonials = [
   },
 ];
 
-const processSteps = [
+const diagnosticItems = [
   {
-    title: "Diagnóstico",
-    text: "Lemos oferta, público, busca, concorrência, canais e estrutura atual de conversão.",
+    title: "Presença",
+    text: "Como a empresa aparece, se apresenta e explica sua oferta.",
   },
   {
-    title: "Direção",
-    text: "Definimos promessa, palavras-chave, ângulos criativos e prioridade de mídia.",
+    title: "Captação",
+    text: "Como chegam os leads, de onde vêm e que promessa recebem.",
+  },
+  {
+    title: "Atendimento",
+    text: "Como o contato é respondido, qualificado e direcionado.",
+  },
+  {
+    title: "Funil",
+    text: "Como oportunidades são acompanhadas até a decisão.",
+  },
+  {
+    title: "Automação & IA",
+    text: "O que pode ser automatizado, assistido ou melhorado com IA aplicada.",
+  },
+  {
+    title: "Métricas",
+    text: "O que está sendo medido e o que ainda está invisível.",
+  },
+];
+
+const processSteps = [
+  {
+    title: "Mapeamento",
+    text: "Entendemos a empresa, canais, oferta, atendimento e gargalos.",
+  },
+  {
+    title: "Estrutura",
+    text: "Definimos quais peças precisam existir: site, página, funil, CRM, automações, campanha ou IA.",
   },
   {
     title: "Construção",
-    text: "Criamos landing pages, copies, criativos, conteúdo SEO e estrutura de mensuração.",
+    text: "Criamos os ativos visuais, digitais, comerciais e operacionais.",
   },
   {
-    title: "Ativação",
-    text: "Colocamos campanhas, páginas e conteúdos no ar com leitura de tráfego e busca.",
+    title: "Implantação",
+    text: "Conectamos páginas, formulários, WhatsApp, CRM, automações e fluxos.",
   },
   {
     title: "Otimização",
-    text: "Refinamos verba, palavra-chave, anúncio, página e oferta conforme os sinais aparecem.",
+    text: "Acompanhamos sinais, ajustamos mensagens e melhoramos o sistema.",
   },
 ];
 
-const audiences = [
-  "Empresas que precisam gerar demanda qualificada",
-  "Negócios locais que querem aparecer melhor no Google",
-  "Marcas com mídia paga sem página ou oferta clara",
-  "Produtos e serviços que dependem de landing pages",
-  "Artistas, eventos e projetos culturais em campanha",
-  "Operações com tráfego, SEO e comercial desconectados",
+const audienceCards = [
+  "Empresas locais que querem vender melhor",
+  "Negócios digitais sem funil claro",
+  "Prestadores de serviço com atendimento desorganizado",
+  "Marcas que dependem só do Instagram",
+  "Empresas que anunciam, mas perdem lead no atendimento",
+  "Projetos que precisam de site, landing page, CRM e automação",
+  "Operações que querem usar IA de forma prática",
+  "Marcas que precisam parecer mais sérias",
 ];
 
-const orbitLabels = ["SEO", "Google Ads", "Meta Ads", "criativos", "landing", "conteúdo", "analytics"];
+const orbitLabels = ["Marca", "Site", "Campanha", "WhatsApp", "CRM", "Automação", "IA", "Indicadores"];
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const compactScene = window.matchMedia("(max-width: 640px)");
@@ -125,124 +226,204 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const processTimeline = document.querySelector("#processTimeline");
 const brandWall = document.querySelector("#brandWall");
+const systemFlow = document.querySelector("#systemFlow");
 
 document.querySelectorAll("[data-contact-link]").forEach((link) => {
   link.href = CONTACT_URL;
 });
 
 function renderContent() {
-  const serviceGrid = document.querySelector("#servicesGrid");
-  serviceGrid.innerHTML = services
-    .map(
-      (service, index) => `
-        <article class="service-card" data-reveal data-index="${String(index + 1).padStart(2, "0")}">
-          <h3>${service.title}</h3>
-          <p>${service.text}</p>
-        </article>
-      `,
-    )
-    .join("");
+  const heroChipArea = document.querySelector("#heroChips");
+  if (heroChipArea) {
+    heroChipArea.innerHTML = heroChips.map((chip) => `<span>${chip}</span>`).join("");
+  }
 
-  brandWall.innerHTML = workedBrands
-    .map(
-      (brand, index) => `
-        <span class="brand-chip" data-depth="${((index % 4) + 1) * 0.18}" data-reveal>${brand}</span>
-      `,
-    )
-    .join("");
+  const painGrid = document.querySelector("#painGrid");
+  if (painGrid) {
+    painGrid.innerHTML = painPoints
+      .map(
+        (point, index) => `
+          <article class="pain-item" data-reveal>
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <strong>${point}</strong>
+          </article>
+        `,
+      )
+      .join("");
+  }
 
-  document.querySelector("#territoryLine").innerHTML = territories
-    .map((territory) => `<span>${territory}</span>`)
-    .join("");
+  const structureGrid = document.querySelector("#structureGrid");
+  if (structureGrid) {
+    structureGrid.innerHTML = structureServices
+      .map(
+        (service, index) => `
+          <article class="service-card" data-reveal data-index="${String(index + 1).padStart(2, "0")}">
+            <h3>${service.title}</h3>
+            <p>${service.text}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  const pubIAGrid = document.querySelector("#pubIAGrid");
+  if (pubIAGrid) {
+    pubIAGrid.innerHTML = pubIAModules
+      .map(
+        (module, index) => `
+          <article class="ia-card" data-reveal data-index="${String(index + 1).padStart(2, "0")}">
+            <h3>${module.title}</h3>
+            <p>${module.text}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  if (systemFlow) {
+    systemFlow.innerHTML = systemSteps
+      .map(
+        (step, index) => `
+          <article class="acquisition-item system-step" data-reveal>
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <h3>${step.title}</h3>
+            <p>${step.text}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  if (brandWall) {
+    brandWall.innerHTML = workedNames
+      .map(
+        (name, index) => `
+          <span class="brand-chip" data-depth="${((index % 4) + 1) * 0.18}" data-reveal>${name}</span>
+        `,
+      )
+      .join("");
+  }
+
+  const territoryLine = document.querySelector("#territoryLine");
+  if (territoryLine) {
+    territoryLine.innerHTML = territories.map((territory) => `<span>${territory}</span>`).join("");
+  }
 
   const testimonialsArea = document.querySelector("#testimonialsArea");
   const testimonialsSection = document.querySelector("#depoimentos");
-  if (testimonialHighlights.length === 0 && videoTestimonials.length === 0) {
-    if (testimonialsSection) {
-      testimonialsSection.hidden = true;
-    }
-    testimonialsArea.innerHTML = "";
-  } else {
-    if (testimonialsSection) {
-      testimonialsSection.hidden = false;
-    }
-    testimonialsArea.innerHTML = `
-      ${
-        videoTestimonials.length > 0
-          ? `
-            <div class="video-testimonial-grid">
-              ${videoTestimonials
-                .map(
-                  (item) => `
-                    <article class="video-testimonial-card" data-reveal>
-                      <div class="video-frame" data-testimonial-title="${item.title}">
-                        <video controls playsinline webkit-playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
-                          <source src="${item.video}" type="video/mp4" />
-                        </video>
-                        <button class="video-play-button" type="button" aria-label="Reproduzir depoimento de ${item.title}">
-                          <span aria-hidden="true"></span>
-                        </button>
-                      </div>
-                      <div class="video-testimonial-meta">
-                        <strong>${item.title}</strong>
-                      </div>
-                    </article>
-                  `,
-                )
-                .join("")}
-            </div>
-          `
-          : ""
+  if (testimonialsArea) {
+    if (testimonialHighlights.length === 0 && videoTestimonials.length === 0) {
+      if (testimonialsSection) {
+        testimonialsSection.hidden = true;
       }
-      ${
-        testimonialHighlights.length > 0
-          ? `
-            <div class="testimonial-grid">
-        ${testimonialHighlights
-          .map(
-            (item) => `
-              <article class="testimonial-card" data-reveal>
-                <blockquote>“${item.texto}”</blockquote>
-                <cite>
-                  <strong>${item.nome}</strong>
-                  <span>${item.empresaProjeto}</span>
-                  <span>${item.fonte}</span>
-                </cite>
-              </article>
-            `,
-          )
-          .join("")}
-            </div>
-          `
-          : ""
+      testimonialsArea.innerHTML = "";
+    } else {
+      if (testimonialsSection) {
+        testimonialsSection.hidden = false;
       }
-    `;
+      testimonialsArea.innerHTML = `
+        ${
+          videoTestimonials.length > 0
+            ? `
+              <div class="video-testimonial-grid">
+                ${videoTestimonials
+                  .map(
+                    (item) => `
+                      <article class="video-testimonial-card" data-reveal>
+                        <div class="video-frame" data-testimonial-title="${item.title}">
+                          <video controls playsinline webkit-playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
+                            <source src="${item.video}" type="video/mp4" />
+                          </video>
+                          <button class="video-play-button" type="button" aria-label="Reproduzir depoimento de ${item.title}">
+                            <span aria-hidden="true"></span>
+                          </button>
+                        </div>
+                        <div class="video-testimonial-meta">
+                          <strong>${item.title}</strong>
+                        </div>
+                      </article>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
+        ${
+          testimonialHighlights.length > 0
+            ? `
+              <div class="testimonial-grid">
+                ${testimonialHighlights
+                  .map(
+                    (item) => `
+                      <article class="testimonial-card" data-reveal>
+                        ${item.imagem ? `<img src="${item.imagem}" alt="" loading="lazy" />` : ""}
+                        <blockquote>“${item.texto}”</blockquote>
+                        <cite>
+                          <strong>${item.nome}</strong>
+                          <span>${item.empresaProjeto}</span>
+                          <span>${item.fonte}</span>
+                        </cite>
+                      </article>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
+      `;
+    }
   }
 
-  processTimeline.innerHTML = processSteps
-    .map(
-      (step, index) => `
-        <article class="process-step" data-number="${index + 1}" data-reveal>
-          <h3>${step.title}</h3>
-          <p>${step.text}</p>
-        </article>
-      `,
-    )
-    .join("");
+  const diagnosticPoints = document.querySelector("#diagnosticPoints");
+  if (diagnosticPoints) {
+    diagnosticPoints.innerHTML = diagnosticItems
+      .map(
+        (item, index) => `
+          <article data-reveal>
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <strong>${item.title}</strong>
+            <p>${item.text}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
 
-  document.querySelector("#audienceGrid").innerHTML = audiences
-    .map(
-      (audience, index) => `
-        <article class="audience-item" data-reveal>
-          <span>${index + 1}</span>
-          <strong>${audience}</strong>
-        </article>
-      `,
-    )
-    .join("");
+  if (processTimeline) {
+    processTimeline.innerHTML = processSteps
+      .map(
+        (step, index) => `
+          <article class="process-step" data-number="${index + 1}" data-reveal>
+            <h3>${step.title}</h3>
+            <p>${step.text}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  const audienceGrid = document.querySelector("#audienceGrid");
+  if (audienceGrid) {
+    audienceGrid.innerHTML = audienceCards
+      .map(
+        (audience, index) => `
+          <article class="audience-item" data-reveal>
+            <span>${index + 1}</span>
+            <strong>${audience}</strong>
+          </article>
+        `,
+      )
+      .join("");
+  }
 }
 
 function setupMenu() {
+  if (!menuToggle || !nav) {
+    return;
+  }
+
   menuToggle.addEventListener("click", () => {
     const isOpen = document.body.classList.toggle("menu-open");
     menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -271,8 +452,7 @@ function setupActiveNav() {
 
   function updateActiveLink() {
     const threshold = window.scrollY + (header?.offsetHeight || 0) + window.innerHeight * 0.24;
-    const activeItem =
-      [...sections].reverse().find(({ section }) => section.offsetTop <= threshold) || sections[0];
+    const activeItem = [...sections].reverse().find(({ section }) => section.offsetTop <= threshold) || sections[0];
 
     navLinks.forEach((link) => {
       if (link === activeItem.link) {
@@ -428,25 +608,41 @@ function clamp(value, min, max) {
 function setupScrollEffects() {
   const processStepsEls = [...document.querySelectorAll(".process-step")];
   const brandChips = [...document.querySelectorAll(".brand-chip")];
+  const systemStepsEls = [...document.querySelectorAll(".system-step")];
 
   function update() {
     const scrollTop = window.scrollY;
     const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
     root.style.setProperty("--scroll-ratio", (scrollTop / maxScroll).toFixed(4));
-    header.classList.toggle("is-scrolled", scrollTop > 18);
+    header?.classList.toggle("is-scrolled", scrollTop > 18);
 
-    const processRect = processTimeline.getBoundingClientRect();
-    const processProgress = clamp(
-      (window.innerHeight * 0.72 - processRect.top) / Math.max(processRect.height, 1),
-      0,
-      1,
-    );
-    processTimeline.style.setProperty("--process-ratio", processProgress.toFixed(3));
-    processStepsEls.forEach((step, index) => {
-      step.classList.toggle("is-active", processProgress >= (index + 0.18) / processStepsEls.length);
-    });
+    if (processTimeline) {
+      const processRect = processTimeline.getBoundingClientRect();
+      const processProgress = clamp(
+        (window.innerHeight * 0.72 - processRect.top) / Math.max(processRect.height, 1),
+        0,
+        1,
+      );
+      processTimeline.style.setProperty("--process-ratio", processProgress.toFixed(3));
+      processStepsEls.forEach((step, index) => {
+        step.classList.toggle("is-active", processProgress >= (index + 0.18) / processStepsEls.length);
+      });
+    }
 
-    if (!reducedMotion) {
+    if (systemFlow) {
+      const systemRect = systemFlow.getBoundingClientRect();
+      const systemProgress = clamp(
+        (window.innerHeight * 0.76 - systemRect.top) / Math.max(systemRect.height, 1),
+        0,
+        1,
+      );
+      systemFlow.style.setProperty("--system-ratio", systemProgress.toFixed(3));
+      systemStepsEls.forEach((step, index) => {
+        step.classList.toggle("is-active", systemProgress >= (index + 0.2) / systemStepsEls.length);
+      });
+    }
+
+    if (!reducedMotion && brandWall) {
       const historyRect = brandWall.getBoundingClientRect();
       const historyProgress = clamp(
         (window.innerHeight - historyRect.top) / (window.innerHeight + historyRect.height),
@@ -470,6 +666,11 @@ function setupScrollEffects() {
 
 function setupOrbitScene() {
   const canvas = document.querySelector("#orbitScene");
+
+  if (!canvas) {
+    return undefined;
+  }
+
   const ctx = canvas.getContext("2d");
   const pointer = { x: 0, y: 0 };
   let width = 0;
@@ -480,7 +681,7 @@ function setupOrbitScene() {
   const nodes = orbitLabels.map((label, index) => ({
     label,
     angle: (Math.PI * 2 * index) / orbitLabels.length,
-    speed: 0.16 + index * 0.018,
+    speed: 0.14 + index * 0.016,
     radius: 0.72 + (index % 3) * 0.12,
     plane: index % 2 === 0 ? 1 : -1,
   }));
@@ -507,6 +708,15 @@ function setupOrbitScene() {
     ctx.restore();
   }
 
+  function drawConnector(x1, y1, x2, y2, color) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
   function draw(time = 0) {
     ctx.clearRect(0, 0, width, height);
 
@@ -514,13 +724,13 @@ function setupOrbitScene() {
     const cy = height * (0.5 + pointer.y * 0.04);
     const base = Math.min(width, height) * 0.34;
     const scrollRatio = Number(getComputedStyle(root).getPropertyValue("--scroll-ratio")) || 0;
-    const t = reducedMotion ? 0.2 : time * 0.00055;
+    const t = reducedMotion ? 0.2 : time * 0.0005;
     const tilt = scrollRatio * 0.45;
 
     ctx.globalCompositeOperation = "source-over";
-    drawRing(cx, cy, base * 1.22, base * 0.34, -0.35 + tilt, "rgba(17,17,17,0.18)");
-    drawRing(cx, cy, base * 1.0, base * 0.44, 0.42 - tilt, "rgba(215,25,32,0.35)");
-    drawRing(cx, cy, base * 0.74, base * 0.28, 1.1 + tilt * 0.7, "rgba(17,17,17,0.13)");
+    drawRing(cx, cy, base * 1.24, base * 0.36, -0.35 + tilt, "rgba(17,17,17,0.18)");
+    drawRing(cx, cy, base * 1.02, base * 0.45, 0.42 - tilt, "rgba(215,25,32,0.35)");
+    drawRing(cx, cy, base * 0.72, base * 0.29, 1.1 + tilt * 0.7, "rgba(17,17,17,0.13)");
 
     const projected = nodes
       .map((node, index) => {
@@ -541,8 +751,12 @@ function setupOrbitScene() {
       .sort((a, b) => a.z - b.z);
 
     projected.forEach((node) => {
-      const isRed = node.label === "Google Ads" || node.label === "Meta Ads" || node.label === "SEO";
-      const radius = 6.5 * node.scale;
+      drawConnector(cx, cy, node.x, node.y, node.label === "IA" ? "rgba(215,25,32,0.22)" : "rgba(17,17,17,0.08)");
+    });
+
+    projected.forEach((node) => {
+      const isRed = ["IA", "Automação", "CRM"].includes(node.label);
+      const radius = 6.8 * node.scale;
       const showLabels = width > 520;
       ctx.beginPath();
       ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
