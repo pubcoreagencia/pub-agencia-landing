@@ -112,19 +112,20 @@ button {
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  min-width: max-content;
+  min-width: 0;
+  line-height: 0;
 }
 
 .brand-symbol {
   display: grid;
   place-items: center;
-  width: 68px;
-  height: 44px;
-  padding: 5px 6px 7px;
-  background: var(--white);
-  border-bottom: 3px solid var(--red);
-  border-radius: 2px 2px 0 0;
+  width: 86px;
+  height: 52px;
+  padding: 7px 8px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.08);
   overflow: hidden;
 }
 
@@ -133,20 +134,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.brand-name {
-  display: grid;
-  gap: 1px;
-  font-size: 0.7rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.brand-name strong {
-  color: var(--ink);
-  font-size: 0.82rem;
+  object-position: center;
 }
 
 .site-nav {
@@ -383,11 +371,11 @@ h3 {
   z-index: 3;
   display: grid;
   place-items: center;
-  width: clamp(118px, 14vw, 178px);
-  aspect-ratio: 1;
+  width: clamp(136px, 15vw, 198px);
+  aspect-ratio: 1.45 / 1;
   background: var(--white);
   border: 9px solid var(--paper-soft);
-  border-radius: 50%;
+  border-radius: 22px;
   box-shadow:
     var(--shadow),
     inset 0 0 0 1px rgba(17, 17, 17, 0.05);
@@ -399,11 +387,11 @@ h3 {
 
 .scene-core img {
   display: block;
-  width: 90%;
+  width: 86%;
   height: auto;
-  max-height: 78%;
+  max-height: 72%;
   object-fit: contain;
-  transform: translateY(1%);
+  transform: translateY(0);
 }
 
 .scene-axis {
@@ -1425,14 +1413,10 @@ h3 {
     padding-bottom: 78px;
   }
 
-  .brand-name {
-    display: none;
-  }
-
   .brand-symbol {
-    width: 60px;
-    height: 42px;
-    padding: 5px 6px 7px;
+    width: 74px;
+    height: 48px;
+    padding: 7px;
   }
 
   h1 {
@@ -1461,8 +1445,9 @@ h3 {
   }
 
   .scene-core {
-    width: clamp(104px, 28vw, 126px);
+    width: clamp(118px, 32vw, 142px);
     border-width: 7px;
+    border-radius: 18px;
   }
 
   .signal-board {
