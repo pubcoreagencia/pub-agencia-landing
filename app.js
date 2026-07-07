@@ -1,5 +1,15 @@
 const CONTACT_URL = "#contato";
 
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+window.addEventListener("pageshow", () => {
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+});
+
 const heroChips = [
   "Site profissional",
   "Landing pages",
@@ -7,80 +17,39 @@ const heroChips = [
   "CRM & Funil",
   "Automações",
   "Agentes de IA",
-  "Campanhas",
-  "Conteúdo",
 ];
 
 const painPoints = [
-  "O cliente chama, mas ninguém acompanha direito",
-  "O WhatsApp vira bagunça",
-  "A empresa depende só de post",
-  "O site não apresenta bem a oferta",
-  "Os anúncios levam para uma estrutura fraca",
-  "Não existe funil, CRM ou histórico",
-  "A equipe responde no improviso",
-  "Nenhum dado vira decisão",
+  "Leads chegam, mas não são acompanhados",
+  "WhatsApp, site e campanhas não conversam",
+  "A empresa depende do improviso para responder",
+  "Poucos dados viram decisão comercial",
 ];
 
 const structureServices = [
   {
     title: "Presença digital",
-    text: "Site, domínio, e-mail profissional, landing pages, identidade de apresentação e páginas que explicam melhor o que a empresa vende.",
+    text: "Site, landing pages, domínio, e-mail profissional e uma apresentação mais clara da oferta.",
   },
   {
     title: "Captação",
-    text: "Campanhas, criativos, SEO, conteúdo, páginas de conversão e formulários para transformar atenção em oportunidade real.",
+    text: "Campanhas, SEO, conteúdo, criativos e formulários para transformar atenção em oportunidade.",
   },
   {
     title: "Atendimento",
-    text: "WhatsApp organizado, mensagens, fluxos, respostas, triagem e estrutura para não perder conversas importantes.",
+    text: "WhatsApp, mensagens, triagem e fluxos para reduzir perda de conversas importantes.",
   },
   {
     title: "CRM & Funil",
-    text: "Organização de leads, etapas comerciais, acompanhamento, histórico e clareza sobre onde cada oportunidade está.",
+    text: "Organização de leads, etapas comerciais, histórico e acompanhamento até a decisão.",
   },
   {
-    title: "Automação",
-    text: "Fluxos simples para reduzir tarefas repetitivas, conectar ferramentas e manter o processo funcionando com menos dependência manual.",
-  },
-  {
-    title: "Agentes de IA",
-    text: "IA aplicada para atendimento, qualificação, respostas, organização, produção de conteúdo, análise e suporte operacional.",
-  },
-  {
-    title: "Conteúdo & Criativos",
-    text: "Comunicação, peças, anúncios, posts, copy e narrativa visual para a marca parecer mais séria e mais clara.",
+    title: "Automação & IA",
+    text: "Agentes, respostas, tarefas e conexões simples para tirar peso do operacional manual.",
   },
   {
     title: "Indicadores",
-    text: "Leitura de dados, gargalos, campanhas, conversões e sinais importantes para melhorar a operação com base em evidências.",
-  },
-];
-
-const pubIAModules = [
-  {
-    title: "Atendimento inteligente",
-    text: "Respostas, triagem, direcionamento, qualificação e suporte para reduzir perda de oportunidades.",
-  },
-  {
-    title: "Funis inteligentes",
-    text: "Fluxos de captação e acompanhamento para leads não sumirem depois do primeiro contato.",
-  },
-  {
-    title: "Automação comercial",
-    text: "Conexões entre formulário, WhatsApp, CRM, planilhas, notificações e tarefas.",
-  },
-  {
-    title: "Conteúdo e copy",
-    text: "Apoio para posts, criativos, anúncios, roteiros, páginas e comunicação com mais consistência.",
-  },
-  {
-    title: "Pesquisa e análise",
-    text: "Leitura de mercado, concorrentes, campanhas, mensagens e oportunidades de melhoria.",
-  },
-  {
-    title: "Sistemas simples",
-    text: "Ferramentas internas, painéis, formulários, relatórios e interfaces para organizar a operação.",
+    text: "Leitura de gargalos, campanhas, conversões e sinais para melhorar com base em evidências.",
   },
 ];
 
@@ -91,7 +60,7 @@ const systemSteps = [
   },
   {
     title: "Captar",
-    text: "Campanhas, criativos, SEO, tráfego e formulários gerando oportunidades.",
+    text: "Campanhas, SEO, criativos e formulários gerando oportunidades.",
   },
   {
     title: "Atender",
@@ -99,11 +68,22 @@ const systemSteps = [
   },
   {
     title: "Acompanhar",
-    text: "CRM, funil, histórico, lembretes e automações para não perder leads.",
+    text: "CRM, histórico, automações, indicadores e IA para evoluir o sistema.",
+  },
+];
+
+const pubIAModules = [
+  {
+    title: "Atendimento assistido",
+    text: "Respostas, triagem e qualificação para não deixar oportunidades paradas.",
   },
   {
-    title: "Melhorar",
-    text: "Indicadores, análise, ajustes e IA aplicada para evoluir o sistema.",
+    title: "Automação comercial",
+    text: "Formulário, WhatsApp, CRM, planilhas, notificações e tarefas conectadas.",
+  },
+  {
+    title: "Conteúdo e análise",
+    text: "Apoio para copy, posts, páginas, mensagens, leitura de mercado e melhorias.",
   },
 ];
 
@@ -157,66 +137,24 @@ const videoTestimonials = [
 
 const diagnosticItems = [
   {
-    title: "Presença",
-    text: "Como a empresa aparece, se apresenta e explica sua oferta.",
+    title: "Presença e oferta",
+    text: "Como a empresa aparece, se apresenta e explica o que vende.",
   },
   {
     title: "Captação",
     text: "Como chegam os leads, de onde vêm e que promessa recebem.",
   },
   {
-    title: "Atendimento",
-    text: "Como o contato é respondido, qualificado e direcionado.",
+    title: "Atendimento e funil",
+    text: "Como o contato é respondido, qualificado e acompanhado.",
   },
   {
-    title: "Funil",
-    text: "Como oportunidades são acompanhadas até a decisão.",
-  },
-  {
-    title: "Automação & IA",
-    text: "O que pode ser automatizado, assistido ou melhorado com IA aplicada.",
-  },
-  {
-    title: "Métricas",
-    text: "O que está sendo medido e o que ainda está invisível.",
+    title: "Automação, IA e métricas",
+    text: "O que pode ser automatizado, assistido, medido e melhorado.",
   },
 ];
 
-const processSteps = [
-  {
-    title: "Mapeamento",
-    text: "Entendemos a empresa, canais, oferta, atendimento e gargalos.",
-  },
-  {
-    title: "Estrutura",
-    text: "Definimos quais peças precisam existir: site, página, funil, CRM, automações, campanha ou IA.",
-  },
-  {
-    title: "Construção",
-    text: "Criamos os ativos visuais, digitais, comerciais e operacionais.",
-  },
-  {
-    title: "Implantação",
-    text: "Conectamos páginas, formulários, WhatsApp, CRM, automações e fluxos.",
-  },
-  {
-    title: "Otimização",
-    text: "Acompanhamos sinais, ajustamos mensagens e melhoramos o sistema.",
-  },
-];
-
-const audienceCards = [
-  "Empresas locais que querem vender melhor",
-  "Negócios digitais sem funil claro",
-  "Prestadores de serviço com atendimento desorganizado",
-  "Marcas que dependem só do Instagram",
-  "Empresas que anunciam, mas perdem lead no atendimento",
-  "Projetos que precisam de site, landing page, CRM e automação",
-  "Operações que querem usar IA de forma prática",
-  "Marcas que precisam parecer mais sérias",
-];
-
-const orbitLabels = ["Marca", "Site", "Campanha", "WhatsApp", "CRM", "Automação", "IA", "Indicadores"];
+const orbitLabels = ["Site", "Lead", "WhatsApp", "CRM", "Automação", "IA"];
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const compactScene = window.matchMedia("(max-width: 640px)");
@@ -224,7 +162,6 @@ const root = document.documentElement;
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
-const processTimeline = document.querySelector("#processTimeline");
 const brandWall = document.querySelector("#brandWall");
 const systemFlow = document.querySelector("#systemFlow");
 
@@ -266,20 +203,6 @@ function renderContent() {
       .join("");
   }
 
-  const pubIAGrid = document.querySelector("#pubIAGrid");
-  if (pubIAGrid) {
-    pubIAGrid.innerHTML = pubIAModules
-      .map(
-        (module, index) => `
-          <article class="ia-card" data-reveal data-index="${String(index + 1).padStart(2, "0")}">
-            <h3>${module.title}</h3>
-            <p>${module.text}</p>
-          </article>
-        `,
-      )
-      .join("");
-  }
-
   if (systemFlow) {
     systemFlow.innerHTML = systemSteps
       .map(
@@ -288,6 +211,20 @@ function renderContent() {
             <span>${String(index + 1).padStart(2, "0")}</span>
             <h3>${step.title}</h3>
             <p>${step.text}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  const pubIAGrid = document.querySelector("#pubIAGrid");
+  if (pubIAGrid) {
+    pubIAGrid.innerHTML = pubIAModules
+      .map(
+        (module, index) => `
+          <article class="ia-card" data-reveal data-index="${String(index + 1).padStart(2, "0")}">
+            <h3>${module.title}</h3>
+            <p>${module.text}</p>
           </article>
         `,
       )
@@ -309,72 +246,7 @@ function renderContent() {
     territoryLine.innerHTML = territories.map((territory) => `<span>${territory}</span>`).join("");
   }
 
-  const testimonialsArea = document.querySelector("#testimonialsArea");
-  const testimonialsSection = document.querySelector("#depoimentos");
-  if (testimonialsArea) {
-    if (testimonialHighlights.length === 0 && videoTestimonials.length === 0) {
-      if (testimonialsSection) {
-        testimonialsSection.hidden = true;
-      }
-      testimonialsArea.innerHTML = "";
-    } else {
-      if (testimonialsSection) {
-        testimonialsSection.hidden = false;
-      }
-      testimonialsArea.innerHTML = `
-        ${
-          videoTestimonials.length > 0
-            ? `
-              <div class="video-testimonial-grid">
-                ${videoTestimonials
-                  .map(
-                    (item) => `
-                      <article class="video-testimonial-card" data-reveal>
-                        <div class="video-frame" data-testimonial-title="${item.title}">
-                          <video controls playsinline webkit-playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
-                            <source src="${item.video}" type="video/mp4" />
-                          </video>
-                          <button class="video-play-button" type="button" aria-label="Reproduzir depoimento de ${item.title}">
-                            <span aria-hidden="true"></span>
-                          </button>
-                        </div>
-                        <div class="video-testimonial-meta">
-                          <strong>${item.title}</strong>
-                        </div>
-                      </article>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            `
-            : ""
-        }
-        ${
-          testimonialHighlights.length > 0
-            ? `
-              <div class="testimonial-grid">
-                ${testimonialHighlights
-                  .map(
-                    (item) => `
-                      <article class="testimonial-card" data-reveal>
-                        ${item.imagem ? `<img src="${item.imagem}" alt="" loading="lazy" />` : ""}
-                        <blockquote>“${item.texto}”</blockquote>
-                        <cite>
-                          <strong>${item.nome}</strong>
-                          <span>${item.empresaProjeto}</span>
-                          <span>${item.fonte}</span>
-                        </cite>
-                      </article>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            `
-            : ""
-        }
-      `;
-    }
-  }
+  renderTestimonials();
 
   const diagnosticPoints = document.querySelector("#diagnosticPoints");
   if (diagnosticPoints) {
@@ -390,33 +262,80 @@ function renderContent() {
       )
       .join("");
   }
+}
 
-  if (processTimeline) {
-    processTimeline.innerHTML = processSteps
-      .map(
-        (step, index) => `
-          <article class="process-step" data-number="${index + 1}" data-reveal>
-            <h3>${step.title}</h3>
-            <p>${step.text}</p>
-          </article>
-        `,
-      )
-      .join("");
+function renderTestimonials() {
+  const testimonialsArea = document.querySelector("#testimonialsArea");
+  const testimonialsBlock = document.querySelector(".testimonials-inline");
+
+  if (!testimonialsArea) {
+    return;
   }
 
-  const audienceGrid = document.querySelector("#audienceGrid");
-  if (audienceGrid) {
-    audienceGrid.innerHTML = audienceCards
-      .map(
-        (audience, index) => `
-          <article class="audience-item" data-reveal>
-            <span>${index + 1}</span>
-            <strong>${audience}</strong>
-          </article>
-        `,
-      )
-      .join("");
+  if (testimonialHighlights.length === 0 && videoTestimonials.length === 0) {
+    if (testimonialsBlock) {
+      testimonialsBlock.hidden = true;
+    }
+    testimonialsArea.innerHTML = "";
+    return;
   }
+
+  if (testimonialsBlock) {
+    testimonialsBlock.hidden = false;
+  }
+
+  testimonialsArea.innerHTML = `
+    ${
+      videoTestimonials.length > 0
+        ? `
+          <div class="video-testimonial-grid">
+            ${videoTestimonials
+              .map(
+                (item) => `
+                  <article class="video-testimonial-card" data-reveal>
+                    <div class="video-frame" data-testimonial-title="${item.title}">
+                      <video controls playsinline webkit-playsinline preload="metadata" poster="${item.poster}" aria-label="Depoimento de ${item.title}">
+                        <source src="${item.video}" type="video/mp4" />
+                      </video>
+                      <button class="video-play-button" type="button" aria-label="Reproduzir depoimento de ${item.title}">
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="video-testimonial-meta">
+                      <strong>${item.title}</strong>
+                    </div>
+                  </article>
+                `,
+              )
+              .join("")}
+          </div>
+        `
+        : ""
+    }
+    ${
+      testimonialHighlights.length > 0
+        ? `
+          <div class="testimonial-grid">
+            ${testimonialHighlights
+              .map(
+                (item) => `
+                  <article class="testimonial-card" data-reveal>
+                    ${item.imagem ? `<img src="${item.imagem}" alt="" loading="lazy" />` : ""}
+                    <blockquote>“${item.texto}”</blockquote>
+                    <cite>
+                      <strong>${item.nome}</strong>
+                      <span>${item.empresaProjeto}</span>
+                      <span>${item.fonte}</span>
+                    </cite>
+                  </article>
+                `,
+              )
+              .join("")}
+          </div>
+        `
+        : ""
+    }
+  `;
 }
 
 function setupMenu() {
@@ -471,7 +390,7 @@ function setupActiveNav() {
 function setupMobileStickyCta() {
   const stickyCta = document.querySelector(".mobile-sticky-cta");
   const heroActions = document.querySelector(".hero-actions");
-  const coverSensitiveSections = document.querySelectorAll("#depoimentos, #contato");
+  const coverSensitiveSections = document.querySelectorAll("#contato");
 
   if (!stickyCta || !heroActions || !("IntersectionObserver" in window)) {
     return;
@@ -495,24 +414,22 @@ function setupMobileStickyCta() {
 
   heroObserver.observe(heroActions);
 
-  if (coverSensitiveSections.length > 0) {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            visibleSensitiveSections.add(entry.target);
-          } else {
-            visibleSensitiveSections.delete(entry.target);
-          }
-        });
-        sensitiveSectionVisible = visibleSensitiveSections.size > 0;
-        syncStickyCta();
-      },
-      { rootMargin: "-12% 0px -18% 0px", threshold: 0 },
-    );
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleSensitiveSections.add(entry.target);
+        } else {
+          visibleSensitiveSections.delete(entry.target);
+        }
+      });
+      sensitiveSectionVisible = visibleSensitiveSections.size > 0;
+      syncStickyCta();
+    },
+    { rootMargin: "-12% 0px -18% 0px", threshold: 0 },
+  );
 
-    coverSensitiveSections.forEach((section) => sectionObserver.observe(section));
-  }
+  coverSensitiveSections.forEach((section) => sectionObserver.observe(section));
 }
 
 function setupVideoPlayers() {
@@ -606,7 +523,6 @@ function clamp(value, min, max) {
 }
 
 function setupScrollEffects() {
-  const processStepsEls = [...document.querySelectorAll(".process-step")];
   const brandChips = [...document.querySelectorAll(".brand-chip")];
   const systemStepsEls = [...document.querySelectorAll(".system-step")];
 
@@ -615,19 +531,6 @@ function setupScrollEffects() {
     const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
     root.style.setProperty("--scroll-ratio", (scrollTop / maxScroll).toFixed(4));
     header?.classList.toggle("is-scrolled", scrollTop > 18);
-
-    if (processTimeline) {
-      const processRect = processTimeline.getBoundingClientRect();
-      const processProgress = clamp(
-        (window.innerHeight * 0.72 - processRect.top) / Math.max(processRect.height, 1),
-        0,
-        1,
-      );
-      processTimeline.style.setProperty("--process-ratio", processProgress.toFixed(3));
-      processStepsEls.forEach((step, index) => {
-        step.classList.toggle("is-active", processProgress >= (index + 0.18) / processStepsEls.length);
-      });
-    }
 
     if (systemFlow) {
       const systemRect = systemFlow.getBoundingClientRect();
@@ -651,10 +554,10 @@ function setupScrollEffects() {
       );
       brandChips.forEach((chip, index) => {
         const depth = Number(chip.dataset.depth || 0.2);
-        const shift = (historyProgress - 0.5) * depth * 120;
-        const rotate = (historyProgress - 0.5) * depth * 10;
-        chip.style.transform = `translate3d(0, ${shift}px, ${depth * 80}px) rotateX(${rotate}deg)`;
-        chip.style.transitionDelay = `${Math.min(index * 28, 160)}ms`;
+        const shift = (historyProgress - 0.5) * depth * 90;
+        const rotate = (historyProgress - 0.5) * depth * 8;
+        chip.style.transform = `translate3d(0, ${shift}px, ${depth * 60}px) rotateX(${rotate}deg)`;
+        chip.style.transitionDelay = `${Math.min(index * 24, 140)}ms`;
       });
     }
   }
@@ -682,7 +585,7 @@ function setupOrbitScene() {
     label,
     angle: (Math.PI * 2 * index) / orbitLabels.length,
     speed: 0.14 + index * 0.016,
-    radius: 0.72 + (index % 3) * 0.12,
+    radius: 0.74 + (index % 2) * 0.12,
     plane: index % 2 === 0 ? 1 : -1,
   }));
 
@@ -727,7 +630,6 @@ function setupOrbitScene() {
     const t = reducedMotion ? 0.2 : time * 0.0005;
     const tilt = scrollRatio * 0.45;
 
-    ctx.globalCompositeOperation = "source-over";
     drawRing(cx, cy, base * 1.24, base * 0.36, -0.35 + tilt, "rgba(17,17,17,0.18)");
     drawRing(cx, cy, base * 1.02, base * 0.45, 0.42 - tilt, "rgba(215,25,32,0.35)");
     drawRing(cx, cy, base * 0.72, base * 0.29, 1.1 + tilt * 0.7, "rgba(17,17,17,0.13)");

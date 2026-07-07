@@ -95,7 +95,7 @@ button {
   align-items: center;
   gap: 24px;
   padding: 14px 0;
-  transition: padding 220ms ease, background 220ms ease, border-color 220ms ease;
+  transition: top 220ms ease, height 220ms ease, padding 220ms ease, background 220ms ease, border-color 220ms ease;
 }
 
 .site-header.is-scrolled {
@@ -113,6 +113,7 @@ button {
   display: inline-flex;
   align-items: center;
   min-width: 0;
+  max-height: 100%;
   line-height: 0;
 }
 
@@ -124,7 +125,12 @@ button {
   background: transparent;
   border: 0;
   box-shadow: none;
-  overflow: visible;
+  overflow: hidden;
+  transition: width 220ms ease;
+}
+
+.site-header.is-scrolled .brand-symbol {
+  width: 76px;
 }
 
 .brand-symbol img {
@@ -1531,6 +1537,115 @@ h3 {
   border-radius: 50%;
 }
 
+.compact-stack {
+  display: grid;
+  gap: clamp(24px, 4vw, 42px);
+}
+
+.compact-kicker {
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: clamp(12px, 2vw, 20px) 0 0;
+}
+
+.compact-kicker h2 {
+  max-width: 720px;
+  font-size: clamp(1.85rem, 3.8vw, 3.8rem);
+}
+
+.compact-services {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.compact-services .service-card,
+.compact-services .service-card:nth-child(n) {
+  grid-column: auto;
+  min-height: 205px;
+}
+
+.compact-services .service-card h3 {
+  margin-top: 24px;
+}
+
+.system-stack {
+  display: grid;
+  gap: clamp(18px, 3vw, 30px);
+}
+
+.compact-ia-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.system-section .ia-card {
+  min-height: 178px;
+  border-color: var(--line);
+  background: rgba(251, 251, 247, 0.68);
+}
+
+.system-section .ia-card::before {
+  color: rgba(17, 17, 17, 0.1);
+}
+
+.system-section .ia-card h3 {
+  max-width: 84%;
+  margin-top: 24px;
+  color: var(--ink);
+  font-size: clamp(1rem, 1.4vw, 1.22rem);
+}
+
+.system-section .ia-card p {
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.proof-section {
+  padding-block: clamp(68px, 9vw, 112px);
+}
+
+.proof-section .history-copy {
+  margin-bottom: clamp(30px, 5vw, 58px);
+}
+
+.proof-section .history-field {
+  min-height: 320px;
+}
+
+.proof-section .brand-chip {
+  min-height: 86px;
+  font-size: clamp(1.08rem, 2.65vw, 2.65rem);
+}
+
+.proof-section .territory-line {
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.testimonials-inline {
+  max-width: var(--page-max);
+  margin: clamp(42px, 6vw, 64px) auto 0;
+  padding-top: clamp(28px, 4vw, 44px);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.testimonials-inline h3 {
+  margin-bottom: clamp(20px, 3vw, 32px);
+  color: var(--white);
+  font-size: clamp(1.45rem, 2.7vw, 2.8rem);
+}
+
+.testimonials-inline .video-testimonial-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.testimonials-inline .video-frame {
+  aspect-ratio: 9 / 14;
+}
+
+.final-diagnostic .diagnostic-side {
+  display: grid;
+  gap: clamp(24px, 4vw, 36px);
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;
@@ -1665,6 +1780,11 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .compact-services,
+  .compact-ia-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .video-testimonial-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1753,6 +1873,10 @@ h3 {
     width: 82px;
   }
 
+  .site-header.is-scrolled .brand-symbol {
+    width: 70px;
+  }
+
   h1 {
     font-size: clamp(2.25rem, 10.8vw, 2.85rem);
     line-height: 0.98;
@@ -1767,8 +1891,13 @@ h3 {
     width: min(calc(100% - 28px), var(--page-max));
   }
 
+  .section,
+  .proof-section {
+    padding-block: 58px;
+  }
+
   .hero-visual {
-    min-height: 285px;
+    min-height: 232px;
   }
 
   .scene-caption {
@@ -1787,7 +1916,7 @@ h3 {
   }
 
   .diagnostic-section {
-    padding-block: 70px;
+    padding-block: 58px;
   }
 
   .diagnostic-points article {
@@ -1802,6 +1931,30 @@ h3 {
 
   .service-card {
     min-height: 228px;
+  }
+
+  .compact-services,
+  .compact-ia-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-inline .video-testimonial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .testimonials-inline .video-frame {
+    aspect-ratio: 9 / 13;
+  }
+
+  .video-testimonial-meta strong {
+    font-size: 0.95rem;
+  }
+
+  .compact-services .service-card,
+  .compact-services .service-card:nth-child(n),
+  .system-section .ia-card {
+    min-height: 0;
   }
 
   .pain-item {
